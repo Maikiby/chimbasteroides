@@ -5,6 +5,7 @@ from asteroidfield import AsteroidField
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH
 from player import Player
 from shot import Shot
+import shot
 
 
 def main():
@@ -42,6 +43,11 @@ def main():
             if is_colliding:
                 print("Game Over!")
                 sys.exit() 
+            for shot in shots:
+                is_shot = shot.is_colliding(asteroid)
+                if is_shot:
+                    shot.kill()
+                    asteroid.kill()
         for obj in drawable:
             obj.draw(screen)
         pygame.display.flip()
